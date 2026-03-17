@@ -236,3 +236,49 @@ document.getElementById('checkout-content').innerHTML=`
 
 function initReveal(){setTimeout(()=>{const o=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.1,rootMargin:'0px 0px -30px 0px'});document.querySelectorAll('#page-landing .reveal').forEach(el=>{el.classList.remove('visible');o.observe(el);});},50);}
 document.addEventListener('DOMContentLoaded',()=>{initReveal();});
+
+async function submitProblemPost() {
+  if (!S.pf.title.trim()) return;
+
+  const result = await dbSaveProblem(S.pf);
+  console.log("Problem submit result:", result);
+
+  if (result && result.success) {
+    S.postDone = true;
+    renderPost();
+  } else {
+    alert("Problem submission failed. Please try again.");
+  }
+}
+
+async function submitIdeaPost() {
+  if (!(S.pt.title.trim() && S.pt.desc.trim())) return;
+
+  const result = await dbSaveIdea(S.pt);
+  console.log("Idea submit result:", result);
+
+  if (result && result.success) {
+    S.ptDone = true;
+    renderPT();
+  } else {
+    alert("Idea submission failed. Please try again.");
+  }
+}
+
+async function submitCheckoutForm() {
+  if (!(S.co.name.trim() && S.co.email.trim())) return;
+
+  const result = await dbSaveSignup(S.co.name, S.co.email, "checkout");
+  console.log("Signup submit result:", result);
+
+  if (result && result.success) {
+    S.coStep = "processing";
+    renderCO();
+    setTimeout(() => {
+      S.coStep = "done";
+      renderCO();
+    }, 2200);
+  } else {
+    alert("Signup failed. Please try again.");
+  }
+}
