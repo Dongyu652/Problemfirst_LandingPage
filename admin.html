@@ -207,7 +207,8 @@ async function fetchData() {
   console.error("Admin fetch failed:", err);
   area.innerHTML = `<div class="table-empty"><div class="ico">🔌</div><h3>Connection failed</h3><p>${err.message || "Could not reach the backend. Check your Apps Script URL and deployment."}</p></div>`;
 }
-
+}
+  
 // ═══ TABLE RENDERING ═══
 function showTab(tab, btn) {
   currentTab = tab;
