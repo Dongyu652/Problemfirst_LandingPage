@@ -1,3 +1,4 @@
+console.log("db.js loaded");
 // ═══════════════════════════════════════════════════════════════
 // problemfirst — Data Collection Module
 // ═══════════════════════════════════════════════════════════════
@@ -10,6 +11,8 @@ const SHEET_API_URL = "https://script.google.com/macros/s/AKfycby2DYW-wvHa5HC9Uh
 // ── Core submit function ──
 async function submitToSheet(type, payload) {
   // Skip if URL not configured
+  console.log("submitToSheet called:", type, payload);
+  
   if (!SHEET_API_URL || SHEET_API_URL.includes("YOUR_GOOGLE")) {
     console.log(`[DB] Skipped (not configured): ${type}`, payload);
     return { success: false, reason: "not_configured" };
