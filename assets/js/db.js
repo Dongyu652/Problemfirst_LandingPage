@@ -5,7 +5,7 @@
 // All data is only visible to the spreadsheet owner (you).
 
 // ── PASTE YOUR GOOGLE APPS SCRIPT WEB APP URL HERE ──
-const SHEET_API_URL = "https://script.google.com/macros/s/AKfycbwTXxKz_tSuepouAE6M2bbC0MFRPjmnv25yfNk65GmQFZjNUh4HLfMEGE0a7qRyYi-6sw/exec";
+const SHEET_API_URL = "https://script.google.com/macros/s/AKfycby2DYW-wvHa5HC9Uh_gZjzl1cLyjirjbn9WSJ55VprEoqYCvXzqbrWipeYtBw7mGK_1eA/exec";
 
 // ── Core submit function ──
 async function submitToSheet(type, payload) {
