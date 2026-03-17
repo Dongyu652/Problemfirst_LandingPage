@@ -203,8 +203,14 @@ async function fetchData() {
       area.innerHTML = `<div class="table-empty"><div class="ico">⚠️</div><h3>Error</h3><p>${json.error || "Could not fetch data."}</p></div>`;
     }
   } catch (err) {
-    area.innerHTML = `<div class="table-empty"><div class="ico">🔌</div><h3>Connection failed</h3><p>Could not reach the backend. Check your Apps Script URL and deployment.</p></div>`;
-  }
+  console.error("Admin fetch failed:", err);
+  area.innerHTML = `
+    <div class="table-empty">
+      <div class="ico">🔌</div>
+      <h3>Connection failed</h3>
+      <p>${err.message || "Could not reach the backend. Check your Apps Script URL and deployment."}</p>
+    </div>
+  `;
 }
 
 // ═══ TABLE RENDERING ═══
