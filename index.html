@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>problemfirst — Start with a real problem, not just an idea.</title>
+
+  <!-- SEO Meta -->
+  <meta name="description" content="A marketplace connecting founders with people who experience real problems. Discover pain points, validate demand, and talk to future users before building.">
+  <meta name="keywords" content="startup, customer discovery, problem validation, founders, MVP, lean startup">
+  <meta name="author" content="problemfirst">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="problemfirst — Start with a real problem, not just an idea.">
+  <meta property="og:description" content="Connect founders with people experiencing real problems. Validate before you build.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://yourusername.github.io/problemfirst/">
+  <meta property="og:image" content="assets/images/og-image.svg">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="problemfirst — Start with a real problem, not just an idea.">
+  <meta name="twitter:description" content="Connect founders with people experiencing real problems.">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,800;0,9..144,900;1,9..144,400;1,9..144,700&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="topnav">
+  <div class="topnav-inner">
+    <div class="logo" onclick="go('landing')">
+      <span class="logo-mark">P</span>
+      <span class="logo-text">problem<span>first</span></span>
+    </div>
+    <div class="nav-links">
+      <button class="nav-link" data-nav="board" onclick="go('board')">Explore</button>
+      <button class="nav-link" data-nav="post" onclick="go('post')">Post</button>
+      <button class="nav-link" data-nav="pressuretest" onclick="go('pressuretest')">Pressure Test</button>
+    </div>
+    <div class="nav-cta">
+      <button class="btn btn-ghost btn-sm" onclick="go('post')">Share a Problem</button>
+      <button class="btn btn-teal btn-sm" onclick="go('board')">Explore Problems</button>
+    </div>
+  </div>
+</nav>
+
+
+<!-- ═══ PAGE 1: LANDING ═══ -->
+<div id="page-landing" class="page active">
+
+  <section class="hero">
+    <div class="hero-bg"><div class="hero-blob b1"></div><div class="hero-blob b2"></div><div class="hero-blob b3"></div></div>
+    <div class="container">
+      <div class="hero-eyebrow reveal"><span class="hero-wave">👋</span> Early access now open — limited founding member spots</div>
+      <h1 class="hero-h1 reveal reveal-d1">
+        The best startups start with a <span class="highlight">real problem</span>, not a <span class="highlight-coral">brilliant guess.</span>
+      </h1>
+      <p class="hero-sub reveal reveal-d2">We built a structured marketplace where people experiencing real frustrations connect with founders who care enough to listen — and act. Grounded in Lean Startup methodology and validated through real customer interviews.</p>
+      <p class="hero-micro reveal reveal-d2">🚀 Early access from $5 · Founded on real interviews · Built by student entrepreneurs</p>
+      <div class="hero-ctas reveal reveal-d3">
+        <button class="btn btn-teal btn-lg" onclick="go('board')">🔍 Explore Real Problems</button>
+        <button class="btn btn-coral btn-lg" onclick="go('post')">💬 Share Your Frustration</button>
+        <button class="btn btn-ghost btn-lg" onclick="go('pressuretest')">🎯 Pressure Test Your Idea</button>
+      </div>
+      <div class="hero-stats reveal reveal-d4">
+        <div><div class="stat-n">30+</div><div class="stat-l">discovery interviews conducted</div></div>
+        <div><div class="stat-n">2</div><div class="stat-l">user types validated</div></div>
+        <div><div class="stat-n">6</div><div class="stat-l">industries covered</div></div>
+        <div><div class="stat-n">$5</div><div class="stat-l">early access, one-time</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="vp-section">
+    <div class="container">
+      <div class="reveal"><span class="section-label"><span class="dot"></span> For everyone</span><h2 class="section-heading">A place for both sides of the equation.</h2><p class="section-sub">Whether you're building the next great product or living with gaps the market hasn't filled — there's a seat at this table for you.</p></div>
+      <div class="vp-grid">
+        <div class="card vp-card founder reveal reveal-d1">
+          <span class="vp-emoji">🧭</span><span class="vp-role">For Founders</span>
+          <h3>Validated problems. Real conversations.</h3>
+          <p>Stop building in a vacuum. Browse structured, real-world frustrations from real people — complete with pain ratings, willingness to pay, and current workarounds. All for a one-time $5 founding membership.</p>
+          <ul class="vp-list">
+            <li><span class="vp-chk"><svg class="chk-svg" viewBox="0 0 10 8" fill="none"><path d="M1 4l2.5 2.5L9 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Browse problems filtered by industry, pain, and user type</li>
+            <li><span class="vp-chk"><svg class="chk-svg" viewBox="0 0 10 8" fill="none"><path d="M1 4l2.5 2.5L9 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Request casual 15-minute chats with real people</li>
+            <li><span class="vp-chk"><svg class="chk-svg" viewBox="0 0 10 8" fill="none"><path d="M1 4l2.5 2.5L9 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Validate your direction before investing months</li>
+          </ul>
+        </div>
+        <div class="card vp-card facer reveal reveal-d2">
+          <span class="vp-emoji">🗣️</span><span class="vp-role">For Problem Facers</span>
+          <h3>Your frustration has real value.</h3>
+          <p>That recurring problem you wish someone would solve? Describe it here — at no cost. Committed founders are actively searching for pain points like yours. Your experience becomes their roadmap.</p>
+          <ul class="vp-list">
+            <li><span class="vp-chk"><svg class="chk-svg" viewBox="0 0 10 8" fill="none"><path d="M1 4l2.5 2.5L9 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Turn everyday annoyances into startup fuel</li>
+            <li><span class="vp-chk"><svg class="chk-svg" viewBox="0 0 10 8" fill="none"><path d="M1 4l2.5 2.5L9 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Connect with builders who genuinely want to help</li>
+            <li><span class="vp-chk"><svg class="chk-svg" viewBox="0 0 10 8" fill="none"><path d="M1 4l2.5 2.5L9 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Shape products before they even exist</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="vid-section">
+    <div class="container" style="text-align:center">
+      <div class="reveal"><span class="section-label" style="justify-content:center"><span class="dot"></span> Demo</span><h2 class="section-heading" style="margin:0 auto 8px">See the platform in action</h2><p class="section-sub" style="margin:0 auto">A walkthrough of how problemfirst connects founders with validated problems and real potential users.</p></div>
+      <div class="vid-box reveal reveal-d1">
+        <div class="vid-play"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7L8 5z" fill="#fff"/></svg></div>
+        <span class="vid-label">Product Demo Coming Soon</span>
+        <span class="vid-hint">Subscribe to get notified when we launch the full walkthrough.</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="jpb-section">
+    <div class="container">
+      <div class="reveal"><span class="section-label"><span class="dot"></span> Deep dive</span><h2 class="section-heading">What drives each side</h2><p class="section-sub">Derived from real customer discovery interviews — here's what we learned about each group's motivations.</p></div>
+      <div class="jpb-grid">
+        <div class="jpb-col reveal reveal-d1">
+          <div class="jpb-col-title">🧭 Founders</div>
+          <div class="jpb-card"><span class="jpb-type job">Job to be done</span><h4>Identify a validated problem worth solving</h4><p>Before investing months of effort, founders need structured evidence that real, recurring pain exists — and that people would pay for relief.</p></div>
+          <div class="jpb-card"><span class="jpb-type pain-t">Pain point</span><h4>Finding real users to interview is the hardest step</h4><p>Cold outreach gets ignored. Friends give biased feedback. Locating honest, willing strangers who match your target user profile is a significant barrier at the earliest stage.</p></div>
+          <div class="jpb-card"><span class="jpb-type gain">Desired gain</span><h4>Evidence-based confidence to commit</h4><p>After five structured conversations with real problem facers, founders gain the conviction to build — or the clarity to pivot before wasting resources.</p></div>
+        </div>
+        <div class="jpb-col reveal reveal-d2">
+          <div class="jpb-col-title">🗣️ Problem Facers</div>
+          <div class="jpb-card"><span class="jpb-type job">Job to be done</span><h4>Get a real solution to a recurring frustration</h4><p>They deal with the same problem week after week, settling for inefficient workarounds because the market hasn't delivered what they need.</p></div>
+          <div class="jpb-card"><span class="jpb-type pain-t">Pain point</span><h4>The feedback loop to builders is broken</h4><p>They post on social media, leave app reviews, tell friends — but the people with the skills and motivation to build a real fix never hear their voice.</p></div>
+          <div class="jpb-card"><span class="jpb-type gain">Desired gain</span><h4>Influence what gets built next</h4><p>When a committed founder says "I want to deeply understand your problem," it's validating. Problem facers want to co-create solutions and be first in line when they launch.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="how-section" id="how">
+    <div class="container">
+      <div class="how-intro reveal">
+        <span class="section-label" style="justify-content:center"><span class="dot"></span> How it works</span>
+        <h2 class="section-heading" style="margin:0 auto 10px">This isn't another feedback forum.</h2>
+        <p class="section-sub" style="margin:0 auto">Most platforms give you noise. problemfirst gives you <strong>structured, critical insight</strong> from people with real context.</p>
+      </div>
+
+      <div class="how-contrast reveal reveal-d1">
+        <div class="how-contrast-card how-contrast-bad"><span class="how-contrast-icon">🚫</span> Typical: random opinions, shallow likes, zero structure</div>
+        <div class="how-contrast-card how-contrast-good"><span class="how-contrast-icon">✅</span> Here: structured critique, logical analysis, direct conversations</div>
+      </div>
+
+      <div class="how-steps">
+        <!-- Step 1 -->
+        <div class="how-step reveal reveal-d1">
+          <div class="how-step-left"><div class="how-step-num">1</div><div class="how-step-connector"></div></div>
+          <div class="how-step-card">
+            <span class="how-step-badge how-badge-teal">📝 Structured Input</span>
+            <div class="how-step-top"><span class="how-step-emoji">📋</span><span class="how-step-title">Problems and ideas are posted in a structured format</span></div>
+            <p class="how-step-desc">Every submission follows a guided framework — not open-ended text boxes. This ensures founders and critics have enough context to respond with substance.</p>
+            <div class="how-step-details">
+              <div class="how-detail"><span class="how-detail-icon how-detail-teal">🎯</span><span><strong>Problem posts</strong> capture who's affected, frequency, pain level (1–5), current workaround, and willingness to pay</span></div>
+              <div class="how-detail"><span class="how-detail-icon how-detail-coral">💡</span><span><strong>Idea posts</strong> require target users, the problem being solved, and key assumptions — forcing clarity before feedback begins</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="how-step reveal reveal-d2">
+          <div class="how-step-left"><div class="how-step-num">2</div><div class="how-step-connector"></div></div>
+          <div class="how-step-card">
+            <span class="how-step-badge how-badge-coral">🔬 Structured Critique</span>
+            <div class="how-step-top"><span class="how-step-emoji">🧠</span><span class="how-step-title">Feedback is categorized, critical, and actionable</span></div>
+            <p class="how-step-desc">Responses are categorized by type — logical flaw, assumption challenge, improvement suggestion, or real-world experience. This separates signal from noise and rewards depth over volume.</p>
+            <div class="how-step-details">
+              <div class="how-detail"><span class="how-detail-icon how-detail-coral">🔍</span><span><strong>Logical critique</strong> — responders identify gaps in reasoning and untested assumptions, not just react with opinions</span></div>
+              <div class="how-detail"><span class="how-detail-icon how-detail-teal">🏆</span><span><strong>Best Insight recognition</strong> — founders mark the most valuable feedback. Optional bounties incentivize quality over quantity</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="how-step reveal reveal-d3">
+          <div class="how-step-left"><div class="how-step-num">3</div><div class="how-step-connector"></div></div>
+          <div class="how-step-card">
+            <span class="how-step-badge how-badge-purple">🤝 Direct Conversation</span>
+            <div class="how-step-top"><span class="how-step-emoji">☕</span><span class="how-step-title">Founders connect directly with real users</span></div>
+            <p class="how-step-desc">Public critique is a starting point. The real value comes from direct, private exchanges between a founder and someone who lives the problem every day.</p>
+            <div class="how-step-details">
+              <div class="how-detail"><span class="how-detail-icon how-detail-teal">💬</span><span><strong>Follow-up questions and messaging</strong> — go deeper than any public thread can reach, with focused back-and-forth</span></div>
+            </div>
+
+            <div class="how-interview-hl">
+              <div class="how-interview-title">📅 15-Minute Customer Discovery Interviews</div>
+              <p class="how-interview-desc">Founders can request a short, structured call with a problem facer. No cold outreach, no favors — just a willing participant and a focused agenda. Based on our interviews, this is the single highest-value interaction for early-stage validation.</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="val-section">
+    <div class="container">
+      <div class="reveal"><span class="section-label"><span class="dot"></span> Research</span><h2 class="section-heading">Built on evidence, not assumptions.</h2><p class="section-sub">This platform was designed through rigorous customer discovery — the same process we help founders run.</p></div>
+      <div class="val-content">
+        <div class="val-insights reveal reveal-d1">
+          <div class="insight"><div class="insight-ico">📊</div><p><strong>Consistently across our interviews,</strong> founders told us that finding real users for customer discovery is their hardest early-stage challenge — often harder than fundraising or building the product itself.</p></div>
+          <div class="insight"><div class="insight-ico">💭</div><p><strong>Most frustrations die in silence.</strong> The people we interviewed had no structured way to share their problems with someone who could actually build a solution.</p></div>
+          <div class="insight"><div class="insight-ico">🤝</div><p><strong>Both sides expressed strong interest</strong> in a platform that connects founders directly to people experiencing the problems they want to solve.</p></div>
+        </div>
+        <div class="val-quote reveal reveal-d2">
+          <blockquote>I spent three weeks trying to find people to interview. If there was a board of real problems from real people, I'd have found my startup direction in an afternoon.</blockquote>
+          <div class="val-author"><div class="val-avatar">AK</div><div><span class="val-name">Anika Khorana</span><span class="val-role-t">Early-stage founder, interview participant</span></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cred-section">
+    <div class="container" style="text-align:center">
+      <div class="reveal"><span class="section-label" style="justify-content:center"><span class="dot"></span> About us</span><h2 class="section-heading" style="margin:0 auto 8px">Why you can trust this platform.</h2><p class="section-sub" style="margin:0 auto">We hold ourselves to the same standard of evidence-based thinking that we encourage in every founder who joins.</p></div>
+      <div class="cred-grid">
+        <div class="card cred-card reveal reveal-d1"><div class="cred-ico">🎓</div><h4>Built by Student Founders</h4><p>Created by university entrepreneurs who experienced the customer discovery gap firsthand — and decided to close it for everyone.</p></div>
+        <div class="card cred-card reveal reveal-d2"><div class="cred-ico">🎤</div><h4>Based on Real Interviews</h4><p>Every feature and design decision is grounded in 30+ structured customer discovery interviews with founders and problem facers.</p></div>
+        <div class="card cred-card reveal reveal-d3"><div class="cred-ico">📘</div><h4>Inspired by Lean Startup</h4><p>Our methodology follows Eric Ries' Lean Startup and Steve Blank's customer development framework — we practice what we teach.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq-section" id="faq">
+    <div class="container" style="text-align:center">
+      <div class="reveal"><span class="section-label" style="justify-content:center"><span class="dot"></span> FAQ</span><h2 class="section-heading" style="margin:0 auto 8px">Got questions?</h2></div>
+      <div class="faq-grid">
+        <div class="faq-item reveal"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">Who is this for?<span class="faq-toggle"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 3v8M3 7h8" stroke="var(--teal)" stroke-width="2" stroke-linecap="round"/></svg></span></button><div class="faq-a"><p><strong>Founders</strong> searching for real problems to solve, and <strong>anyone</strong> who experiences recurring frustrations and wishes someone would fix them. No technical background needed.</p></div></div>
+        <div class="faq-item reveal reveal-d1"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">Why does early access cost $5?<span class="faq-toggle"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 3v8M3 7h8" stroke="var(--teal)" stroke-width="2" stroke-linecap="round"/></svg></span></button><div class="faq-a"><p>The $5 early access fee helps us validate that this platform delivers real value. It also ensures our founding community is made up of people genuinely committed to building better startups. Founding members get lifetime access and priority for all future features.</p></div></div>
+        <div class="faq-item reveal reveal-d2"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">What do problem facers get out of it?<span class="faq-toggle"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 3v8M3 7h8" stroke="var(--teal)" stroke-width="2" stroke-linecap="round"/></svg></span></button><div class="faq-a"><p>Problem facers join at no cost. Your value is your experience — founders pay for access because your real-world frustrations are the raw material great startups are built from. You get direct access to builders, influence over what gets made, and early access to solutions designed around your needs.</p></div></div>
+        <div class="faq-item reveal reveal-d3"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">How do conversations actually happen?<span class="faq-toggle"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 3v8M3 7h8" stroke="var(--teal)" stroke-width="2" stroke-linecap="round"/></svg></span></button><div class="faq-a"><p>Founders browse the Problem Board, ask structured follow-up questions, and request 15-minute customer discovery interviews. Every interaction happens through the platform — designed to be respectful, focused, and grounded in Lean Startup best practices.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EARLY ACCESS PRICING -->
+  <section class="pricing-section" id="pricing">
+    <div class="container" style="text-align:center">
+      <div class="reveal">
+        <span class="section-label" style="justify-content:center"><span class="dot"></span> Early Access</span>
+        <h2 class="section-heading" style="margin:0 auto 10px">Get Early Access</h2>
+        <p class="section-sub" style="margin:0 auto">Join the founding community of builders and problem solvers. Secure your early access before we open to the public — and help shape the platform's direction from day one.</p>
+      </div>
+
+      <div class="pricing-wrapper reveal reveal-d1">
+        <div class="pricing-card">
+          <span class="pricing-popular">🔥 Limited Spots</span>
+          <div class="pricing-body">
+            <span class="pricing-emoji">🚀</span>
+            <div class="pricing-plan">Early Founder Access</div>
+            <h3 class="pricing-title">Everything you need to validate before you build.</h3>
+            <p class="pricing-desc">Skip the guesswork. Get direct access to real problems, real people, and real feedback — all in one place.</p>
+
+            <div class="pricing-price">
+              <span class="pricing-dollar">$5</span>
+              <span class="pricing-period">one-time</span>
+            </div>
+            <div class="pricing-original">Regular price: $19/month</div>
+
+            <ul class="pricing-benefits">
+              <li><span class="pricing-check"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5l3 3L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span><strong>Post startup ideas</strong> and get them pressure tested by the community</span></li>
+              <li><span class="pricing-check"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5l3 3L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span><strong>Receive critical feedback</strong> — honest challenges to your assumptions</span></li>
+              <li><span class="pricing-check"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5l3 3L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span><strong>Connect with problem facers</strong> who experience the pain you want to solve</span></li>
+              <li><span class="pricing-check"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5l3 3L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span><strong>Request interviews</strong> — 15-minute chats with potential users</span></li>
+              <li><span class="pricing-check"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5l3 3L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span><strong>Founding member badge</strong> + priority access to all future features</span></li>
+            </ul>
+          </div>
+          <div class="pricing-cta-wrap">
+            <button class="pricing-cta" onclick="go('checkout')">🔓 Join Early Access — $5 <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m-4-4l4 4-4 4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          </div>
+        </div>
+
+        <div class="pricing-trust">
+          <div class="pricing-trust-item"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#9CA3AF" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#0F766E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> 30-day money-back guarantee</div>
+          <div class="pricing-trust-item"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><rect x="2" y="5" width="12" height="9" rx="2" stroke="#9CA3AF" stroke-width="1.5"/><path d="M5 5V3.5a3 3 0 016 0V5" stroke="#9CA3AF" stroke-width="1.5" stroke-linecap="round"/></svg> Secure checkout · No auto-renewal</div>
+        </div>
+
+        <div class="pricing-note">
+          <p>💡 Your willingness to pay is the strongest signal that this platform delivers real value.</p>
+          <small>This is an early-stage validation experiment. Every founding member helps us prove the model and shape what comes next.</small>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="final-cta" id="cta">
+    <div class="blobs"><div class="fb1"></div><div class="fb2"></div></div>
+    <div class="container">
+      <div class="reveal"><span class="section-label" style="justify-content:center"><span class="dot"></span> Let's go</span></div>
+      <h2 class="final-h2 reveal reveal-d1">Every great product started as a <span class="highlight-coral">conversation.</span></h2>
+      <p class="final-sub reveal reveal-d2">Don't build in a vacuum. Don't suffer in silence. Join a founding community where real problems meet committed builders — and evidence replaces guesswork.</p>
+      <div class="final-ctas reveal reveal-d3">
+        <button class="btn btn-teal btn-lg" onclick="go('checkout')">🔓 Get Early Access — $5</button>
+        <button class="btn btn-coral btn-lg" onclick="go('post')">💬 Share a Problem</button>
+        <button class="btn btn-ghost btn-lg" onclick="go('pressuretest')">🎯 Pressure Test an Idea</button>
+      </div>
+      <p class="final-fn reveal reveal-d4">$5 one-time · Founding member access · 30-day money-back guarantee</p>
+    </div>
+  </section>
+
+  <footer class="footer"><div class="container"><div class="footer-logo">problem<span>first</span></div><div class="footer-text">Built by student founders · Based on real interviews · Inspired by Lean Startup methodology · March 2026</div></div></footer>
+</div>
+
+
+<!-- ═══ PAGE 2: BOARD ═══ -->
+<div id="page-board" class="page">
+  <div class="container" style="padding-top:72px"><div class="toolbar" id="toolbar"></div><div class="board-layout"><aside class="sidebar" id="sidebar"></aside><main class="board-main" id="board-main"></main></div></div>
+</div>
+
+<!-- ═══ PAGE 3: DETAIL ═══ -->
+<div id="page-detail" class="page">
+  <div class="detail-container" style="padding-top:72px" id="detail-content"></div>
+</div>
+
+<!-- ═══ PAGE 4: POST ═══ -->
+<div id="page-post" class="page">
+  <div class="post-container" style="padding-top:72px" id="post-content"></div>
+</div>
+
+<!-- ═══ PAGE 5: PRESSURE TEST ═══ -->
+<div id="page-pressuretest" class="page">
+  <div class="pt-container" style="padding-top:72px" id="pt-content"></div>
+</div>
+
+<!-- ═══ PAGE 6: CHECKOUT ═══ -->
+<div id="page-checkout" class="page">
+  <div class="checkout-container" style="padding-top:72px" id="checkout-content"></div>
+</div>
+
+<!-- Drawer -->
+<div id="drawer-overlay" class="drawer-overlay hide" onclick="closeDrawer()">
+  <div class="drawer" onclick="event.stopPropagation()">
+    <div class="drawer-head"><h3>Filters</h3><button class="drawer-close" onclick="closeDrawer()">×</button></div>
+    <div id="drawer-filters"></div>
+  </div>
+</div>
+
+
+
+  <!-- Database Collection -->
+  <script src="assets/js/db.js"></script>
+
+  <!-- Application Logic -->
+  <script src="assets/js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin — problemfirst</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,900&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --fn-d: 'Fraunces', Georgia, serif;
+  --fn-b: 'DM Sans', sans-serif;
+  --teal: #0F766E;
+  --teal-light: #14B8A6;
+  --teal-bg: rgba(20,184,166,0.08);
+  --teal-border: rgba(20,184,166,0.2);
+  --coral: #F97316;
+  --coral-bg: rgba(249,115,22,0.08);
+  --coral-border: rgba(249,115,22,0.2);
+  --bg: #FFF9F2;
+  --bg-card: #FFFFFF;
+  --t1: #1A1A1A;
+  --t2: #525252;
+  --t3: #9CA3AF;
+  --brd: rgba(0,0,0,0.07);
+  --shadow: 0 2px 16px rgba(249,115,22,0.06), 0 1px 3px rgba(0,0,0,0.04);
+  --r: 18px;
+  --r-sm: 12px;
+  --r-pill: 100px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--fn-b); background: var(--bg); color: var(--t1); -webkit-font-smoothing: antialiased; min-height: 100vh; }
+
+/* ── Login Gate ── */
+.login-wrap { display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 28px; }
+.login-card { background: var(--bg-card); border: 1px solid var(--brd); border-radius: var(--r); box-shadow: var(--shadow); padding: 40px 36px; max-width: 400px; width: 100%; text-align: center; }
+.login-icon { font-size: 40px; margin-bottom: 14px; }
+.login-card h1 { font-family: var(--fn-d); font-size: 24px; font-weight: 900; margin-bottom: 6px; }
+.login-card p { font-size: 14px; color: var(--t3); margin-bottom: 24px; }
+.login-input { width: 100%; padding: 13px 16px; border-radius: var(--r-pill); border: 2px solid var(--brd); font-size: 14px; color: var(--t1); outline: none; text-align: center; margin-bottom: 14px; transition: border-color 0.2s; }
+.login-input:focus { border-color: var(--teal); }
+.login-btn { width: 100%; padding: 14px 0; border-radius: var(--r-pill); font-size: 15px; font-weight: 700; background: var(--teal); color: #fff; border: none; cursor: pointer; box-shadow: 0 4px 20px rgba(20,184,166,0.18); transition: all 0.25s; }
+.login-btn:hover { background: var(--teal-light); transform: translateY(-2px); }
+.login-error { font-size: 13px; color: #DC2626; margin-top: 10px; display: none; }
+
+/* ── Dashboard ── */
+.dashboard { display: none; }
+.dash-nav { background: var(--bg-card); border-bottom: 1px solid var(--brd); padding: 14px 28px; display: flex; align-items: center; justify-content: space-between; }
+.dash-logo { font-family: var(--fn-d); font-size: 18px; font-weight: 900; display: flex; align-items: center; gap: 8px; }
+.dash-logo span { color: var(--teal); }
+.dash-badge { padding: 4px 12px; border-radius: var(--r-pill); background: var(--coral-bg); color: var(--coral); font-size: 11px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; }
+.dash-actions { display: flex; gap: 8px; }
+.dash-btn { padding: 8px 18px; border-radius: var(--r-pill); font-size: 13px; font-weight: 700; border: 1.5px solid var(--brd); background: var(--bg-card); color: var(--t2); cursor: pointer; transition: all 0.2s; }
+.dash-btn:hover { border-color: var(--teal); color: var(--teal); }
+.dash-btn-out { color: var(--t3); }
+.dash-btn-out:hover { border-color: #DC2626; color: #DC2626; }
+
+.dash-body { max-width: 1100px; margin: 0 auto; padding: 28px; }
+
+/* Stats */
+.stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 28px; }
+.stat-card { background: var(--bg-card); border: 1px solid var(--brd); border-radius: var(--r); padding: 22px 20px; box-shadow: var(--shadow); text-align: center; }
+.stat-card .num { font-family: var(--fn-d); font-size: 36px; font-weight: 900; color: var(--teal); line-height: 1; margin-bottom: 4px; }
+.stat-card .label { font-size: 13px; color: var(--t3); font-weight: 600; }
+
+/* Tabs */
+.tab-row { display: flex; gap: 4px; margin-bottom: 20px; }
+.tab { padding: 10px 20px; border-radius: var(--r-pill); font-size: 14px; font-weight: 700; background: transparent; color: var(--t3); border: none; cursor: pointer; transition: all 0.2s; }
+.tab.active { background: var(--teal); color: #fff; }
+.tab:hover:not(.active) { color: var(--teal); }
+
+/* Table */
+.table-wrap { background: var(--bg-card); border: 1px solid var(--brd); border-radius: var(--r); overflow: hidden; box-shadow: var(--shadow); }
+.table-empty { padding: 48px 20px; text-align: center; }
+.table-empty .ico { font-size: 36px; margin-bottom: 10px; }
+.table-empty h3 { font-family: var(--fn-d); font-size: 18px; margin-bottom: 6px; }
+.table-empty p { font-size: 14px; color: var(--t3); }
+
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+thead { background: rgba(0,0,0,0.02); }
+th { text-align: left; padding: 12px 16px; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: var(--teal); border-bottom: 2px solid var(--brd); }
+td { padding: 12px 16px; border-bottom: 1px solid rgba(0,0,0,0.04); color: var(--t2); vertical-align: top; max-width: 250px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+tr:hover td { background: rgba(20,184,166,0.03); }
+td:first-child { font-weight: 600; color: var(--t1); }
+
+.loading { text-align: center; padding: 40px; color: var(--t3); }
+.spinner { width: 32px; height: 32px; border: 3px solid var(--brd); border-top: 3px solid var(--teal); border-radius: 50%; margin: 0 auto 12px; animation: spin 1s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.export-btn { padding: 8px 18px; border-radius: var(--r-pill); font-size: 12px; font-weight: 700; border: 1.5px solid var(--teal-border); background: var(--teal-bg); color: var(--teal); cursor: pointer; transition: all 0.2s; float: right; margin-bottom: 12px; }
+.export-btn:hover { background: var(--teal); color: #fff; }
+
+@media (max-width: 640px) {
+  .stat-grid { grid-template-columns: 1fr; }
+  .dash-nav { flex-direction: column; gap: 10px; }
+  td { max-width: 120px; font-size: 12px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ LOGIN GATE ═══ -->
+<div id="login-gate" class="login-wrap">
+  <div class="login-card">
+    <div class="login-icon">🔐</div>
+    <h1>Admin Access</h1>
+    <p>This dashboard is restricted to the problemfirst development team.</p>
+    <input id="pwd-input" class="login-input" type="password" placeholder="Enter admin password" onkeydown="if(event.key==='Enter')doLogin()">
+    <button class="login-btn" onclick="doLogin()">Access Dashboard</button>
+    <div id="login-err" class="login-error">Incorrect password. Please try again.</div>
+  </div>
+</div>
+
+<!-- ═══ DASHBOARD ═══ -->
+<div id="dashboard" class="dashboard">
+  <nav class="dash-nav">
+    <div class="dash-logo">🔒 problem<span>first</span> <span class="dash-badge">Admin</span></div>
+    <div class="dash-actions">
+      <button class="dash-btn" onclick="fetchData()">↻ Refresh</button>
+      <button class="dash-btn dash-btn-out" onclick="doLogout()">Sign Out</button>
+    </div>
+  </nav>
+
+  <div class="dash-body">
+    <div class="stat-grid" id="stat-grid">
+      <div class="stat-card"><div class="num" id="ct-signups">—</div><div class="label">Signups</div></div>
+      <div class="stat-card"><div class="num" id="ct-problems">—</div><div class="label">Problems Posted</div></div>
+      <div class="stat-card"><div class="num" id="ct-ideas">—</div><div class="label">Ideas Posted</div></div>
+    </div>
+
+    <div class="tab-row">
+      <button class="tab active" onclick="showTab('signups',this)">Signups</button>
+      <button class="tab" onclick="showTab('problems',this)">Problems</button>
+      <button class="tab" onclick="showTab('ideas',this)">Ideas</button>
+    </div>
+
+    <div id="table-area">
+      <div class="loading"><div class="spinner"></div>Loading data...</div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ═══ CONFIG ═══
+// Paste the SAME Google Apps Script URL and the SAME ADMIN_SECRET you set in the script
+const API_URL = "YOUR_GOOGLE_APPS_SCRIPT_URL_HERE";
+const ADMIN_KEY = "pf-admin-2026-CHANGEME";
+
+let DATA = { signups: [], problems: [], ideas: [] };
+let currentTab = "signups";
+
+// ═══ LOGIN ═══
+function doLogin() {
+  const pwd = document.getElementById("pwd-input").value;
+  // Simple client-side gate — the real protection is the server-side ADMIN_KEY
+  if (pwd === ADMIN_KEY) {
+    document.getElementById("login-gate").style.display = "none";
+    document.getElementById("dashboard").style.display = "block";
+    sessionStorage.setItem("pf-admin", "1");
+    fetchData();
+  } else {
+    document.getElementById("login-err").style.display = "block";
+  }
+}
+
+function doLogout() {
+  sessionStorage.removeItem("pf-admin");
+  document.getElementById("dashboard").style.display = "none";
+  document.getElementById("login-gate").style.display = "flex";
+  document.getElementById("pwd-input").value = "";
+  document.getElementById("login-err").style.display = "none";
+}
+
+// Auto-login if session active
+if (sessionStorage.getItem("pf-admin")) {
+  document.getElementById("login-gate").style.display = "none";
+  document.getElementById("dashboard").style.display = "block";
+  fetchData();
+}
+
+// ═══ DATA FETCHING ═══
+async function fetchData() {
+  const area = document.getElementById("table-area");
+  area.innerHTML = '<div class="loading"><div class="spinner"></div>Loading data...</div>';
+
+  if (!API_URL || API_URL.includes("YOUR_GOOGLE")) {
+    area.innerHTML = `<div class="table-empty"><div class="ico">⚙️</div><h3>Backend not configured</h3><p>Paste your Google Apps Script URL into admin.html (line 2 of the script section) and db.js (line 7) to connect.</p></div>`;
+    return;
+  }
+
+  try {
+    const res = await fetch(API_URL + "?action=read&key=" + encodeURIComponent(ADMIN_KEY));
+    const json = await res.json();
+
+    if (json.success) {
+      DATA = json.data;
+      document.getElementById("ct-signups").textContent = DATA.signups.length;
+      document.getElementById("ct-problems").textContent = DATA.problems.length;
+      document.getElementById("ct-ideas").textContent = DATA.ideas.length;
+      showTab(currentTab);
+    } else {
+      area.innerHTML = `<div class="table-empty"><div class="ico">⚠️</div><h3>Error</h3><p>${json.error || "Could not fetch data."}</p></div>`;
+    }
+  } catch (err) {
+    area.innerHTML = `<div class="table-empty"><div class="ico">🔌</div><h3>Connection failed</h3><p>Could not reach the backend. Check your Apps Script URL and deployment.</p></div>`;
+  }
+}
+
+// ═══ TABLE RENDERING ═══
+function showTab(tab, btn) {
+  currentTab = tab;
+  document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
+  if (btn) btn.classList.add("active");
+  else document.querySelector(`.tab[onclick*="${tab}"]`)?.classList.add("active");
+
+  const rows = DATA[tab] || [];
+  const area = document.getElementById("table-area");
+
+  if (rows.length === 0) {
+    area.innerHTML = `<div class="table-wrap"><div class="table-empty"><div class="ico">📭</div><h3>No ${tab} yet</h3><p>Data will appear here once users start submitting.</p></div></div>`;
+    return;
+  }
+
+  const headers = Object.keys(rows[0]);
+  let html = `<button class="export-btn" onclick="exportCSV('${tab}')">📥 Export CSV</button>`;
+  html += '<div class="table-wrap"><table><thead><tr>';
+  headers.forEach(h => { html += `<th>${h}</th>`; });
+  html += '</tr></thead><tbody>';
+  rows.slice().reverse().forEach(row => {
+    html += '<tr>';
+    headers.forEach(h => {
+      let val = row[h] || "";
+      if (typeof val === "string" && val.length > 60) val = val.substring(0, 57) + "...";
+      html += `<td title="${String(row[h] || '').replace(/"/g, '&quot;')}">${val}</td>`;
+    });
+    html += '</tr>';
+  });
+  html += '</tbody></table></div>';
+  area.innerHTML = html;
+}
+
+// ═══ CSV EXPORT ═══
+function exportCSV(tab) {
+  const rows = DATA[tab] || [];
+  if (!rows.length) return;
+
+  const headers = Object.keys(rows[0]);
+  let csv = headers.join(",") + "\n";
+  rows.forEach(row => {
+    csv += headers.map(h => {
+      let v = String(row[h] || "").replace(/"/g, '""');
+      return `"${v}"`;
+    }).join(",") + "\n";
+  });
+
+  const blob = new Blob([csv], { type: "text/csv" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `problemfirst-${tab}-${new Date().toISOString().slice(0, 10)}.csv`;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+</script>
+</body>
+</html>
