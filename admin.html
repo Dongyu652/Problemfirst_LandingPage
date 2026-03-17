@@ -143,17 +143,55 @@ td:first-child { font-weight: 600; color: var(--t1); }
 
 <script>
 // ═══ CONFIG ═══
-// Paste the SAME Google Apps Script URL and the SAME ADMIN_SECRET you set in the script
-const API_URL = "https://script.googleusercontent.com/macros/echo?user_content_key=AY5xjrSwIO_1GJMDF2jcYCJG8noODvXkvZx0mxEmpOYiG6FLkTQpRCig8DUf08t_ry12cjeIJXhNwhBM5rJsVCHmOE2rbz2UlD0dCy9ai98uhMeU37MFuFue-XjP7fS1V6YHuGxwxzFpEdmTHKzGhMZyDJhJmp5GINWXxX6ZQEC5CzE9OTcHAxH9VOibXlN6IjMfa7owFEUCL0knZkDo6q97RjjV2UZFjku_j30hromGbK5K_ckM0rS2BrsDX4NXKroAHXV2kBb6AAjDRVFc22AcTPff5oQKN6pwlfz6zYdI&lib=M1GL2ljt4vL-weB0Yny23Sxm2BIQBQev9";
+const API_URL = "把这里替换成你最新部署后的 Apps Script URL";
 const ADMIN_KEY = "Killmystartup";
 
 let DATA = { signups: [], problems: [], ideas: [] };
 let currentTab = "signups";
 
+// ═══ JSONP HELPER ═══
+function jsonpRequest(url) {
+  return new Promise((resolve, reject) => {
+    const callbackName = "pfJsonp_" + Date.now() + "_" + Math.floor(Math.random() * 10000);
+    const separator = url.includes("?") ? "&" : "?";
+    const finalUrl = url + separator + "callback=" + callbackName;
+
+    const script = document.createElement("script");
+    script.src = finalUrl;
+
+    let finished = false;
+
+    window[callbackName] = function (data) {
+      finished = true;
+      resolve(data);
+      cleanup();
+    };
+
+    script.onerror = function () {
+      if (!finished) reject(new Error("JSONP request failed"));
+      cleanup();
+    };
+
+    function cleanup() {
+      try { delete window[callbackName]; } catch (e) {}
+      if (script.parentNode) script.parentNode.removeChild(script);
+    }
+
+    document.body.appendChild(script);
+
+    setTimeout(() => {
+      if (!finished) {
+        reject(new Error("Request timed out"));
+        cleanup();
+      }
+    }, 10000);
+  });
+}
+
 // ═══ LOGIN ═══
 function doLogin() {
-  const pwd = document.getElementById("pwd-input").value;
-  // Simple client-side gate — the real protection is the server-side ADMIN_KEY
+  const pwd = document.getElementById("pwd-input").value.trim();
+
   if (pwd === ADMIN_KEY) {
     document.getElementById("login-gate").style.display = "none";
     document.getElementById("dashboard").style.display = "block";
@@ -185,30 +223,48 @@ async function fetchData() {
   area.innerHTML = '<div class="loading"><div class="spinner"></div>Loading data...</div>';
 
   if (!API_URL || API_URL.includes("YOUR_GOOGLE")) {
-    area.innerHTML = `<div class="table-empty"><div class="ico">⚙️</div><h3>Backend not configured</h3><p>Paste your Google Apps Script URL into admin.html (line 2 of the script section) and db.js (line 7) to connect.</p></div>`;
+    area.innerHTML = `
+      <div class="table-empty">
+        <div class="ico">⚙️</div>
+        <h3>Backend not configured</h3>
+        <p>Paste your latest Apps Script URL into admin.html.</p>
+      </div>`;
     return;
   }
 
   try {
-  const separator = API_URL.includes("?") ? "&" : "?";
-  const res = await fetch(API_URL + separator + "action=read&key=" + encodeURIComponent(ADMIN_KEY));
-  const json = await res.json();
+    const separator = API_URL.includes("?") ? "&" : "?";
+    const url = API_URL + separator + "action=read&key=" + encodeURIComponent(ADMIN_KEY);
 
-  if (json.success) {
-    DATA = json.data;
-    document.getElementById("ct-signups").textContent = DATA.signups.length;
-    document.getElementById("ct-problems").textContent = DATA.problems.length;
-    document.getElementById("ct-ideas").textContent = DATA.ideas.length;
-    showTab(currentTab);
-  } else {
-    area.innerHTML = `<div class="table-empty"><div class="ico">⚠️</div><h3>Error</h3><p>${json.error || "Could not fetch data."}</p></div>`;
+    const json = await jsonpRequest(url);
+
+    if (json.success) {
+      DATA = json.data || { signups: [], problems: [], ideas: [] };
+
+      document.getElementById("ct-signups").textContent = (DATA.signups || []).length;
+      document.getElementById("ct-problems").textContent = (DATA.problems || []).length;
+      document.getElementById("ct-ideas").textContent = (DATA.ideas || []).length;
+
+      showTab(currentTab);
+    } else {
+      area.innerHTML = `
+        <div class="table-empty">
+          <div class="ico">⚠️</div>
+          <h3>Error</h3>
+          <p>${json.error || "Could not fetch data."}</p>
+        </div>`;
+    }
+  } catch (err) {
+    console.error("Admin fetch failed:", err);
+    area.innerHTML = `
+      <div class="table-empty">
+        <div class="ico">🔌</div>
+        <h3>Connection failed</h3>
+        <p>${err.message || "Could not reach the backend."}</p>
+      </div>`;
   }
-} catch (err) {
-  console.error("Admin fetch failed:", err);
-  area.innerHTML = `<div class="table-empty"><div class="ico">🔌</div><h3>Connection failed</h3><p>${err.message || "Could not reach the backend. Check your Apps Script URL and deployment."}</p></div>`;
 }
-}
-  
+
 // ═══ TABLE RENDERING ═══
 function showTab(tab, btn) {
   currentTab = tab;
@@ -220,7 +276,14 @@ function showTab(tab, btn) {
   const area = document.getElementById("table-area");
 
   if (rows.length === 0) {
-    area.innerHTML = `<div class="table-wrap"><div class="table-empty"><div class="ico">📭</div><h3>No ${tab} yet</h3><p>Data will appear here once users start submitting.</p></div></div>`;
+    area.innerHTML = `
+      <div class="table-wrap">
+        <div class="table-empty">
+          <div class="ico">📭</div>
+          <h3>No ${tab} yet</h3>
+          <p>Data will appear here once users start submitting.</p>
+        </div>
+      </div>`;
     return;
   }
 
@@ -229,6 +292,7 @@ function showTab(tab, btn) {
   html += '<div class="table-wrap"><table><thead><tr>';
   headers.forEach(h => { html += `<th>${h}</th>`; });
   html += '</tr></thead><tbody>';
+
   rows.slice().reverse().forEach(row => {
     html += '<tr>';
     headers.forEach(h => {
@@ -238,6 +302,7 @@ function showTab(tab, btn) {
     });
     html += '</tr>';
   });
+
   html += '</tbody></table></div>';
   area.innerHTML = html;
 }
@@ -249,6 +314,7 @@ function exportCSV(tab) {
 
   const headers = Object.keys(rows[0]);
   let csv = headers.join(",") + "\n";
+
   rows.forEach(row => {
     csv += headers.map(h => {
       let v = String(row[h] || "").replace(/"/g, '""');
