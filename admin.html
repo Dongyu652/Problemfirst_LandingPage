@@ -190,27 +190,22 @@ async function fetchData() {
   }
 
   try {
-    const res = await fetch(API_URL + "?action=read&key=" + encodeURIComponent(ADMIN_KEY));
-    const json = await res.json();
+  const separator = API_URL.includes("?") ? "&" : "?";
+  const res = await fetch(API_URL + separator + "action=read&key=" + encodeURIComponent(ADMIN_KEY));
+  const json = await res.json();
 
-    if (json.success) {
-      DATA = json.data;
-      document.getElementById("ct-signups").textContent = DATA.signups.length;
-      document.getElementById("ct-problems").textContent = DATA.problems.length;
-      document.getElementById("ct-ideas").textContent = DATA.ideas.length;
-      showTab(currentTab);
-    } else {
-      area.innerHTML = `<div class="table-empty"><div class="ico">⚠️</div><h3>Error</h3><p>${json.error || "Could not fetch data."}</p></div>`;
-    }
-  } catch (err) {
+  if (json.success) {
+    DATA = json.data;
+    document.getElementById("ct-signups").textContent = DATA.signups.length;
+    document.getElementById("ct-problems").textContent = DATA.problems.length;
+    document.getElementById("ct-ideas").textContent = DATA.ideas.length;
+    showTab(currentTab);
+  } else {
+    area.innerHTML = `<div class="table-empty"><div class="ico">⚠️</div><h3>Error</h3><p>${json.error || "Could not fetch data."}</p></div>`;
+  }
+} catch (err) {
   console.error("Admin fetch failed:", err);
-  area.innerHTML = `
-    <div class="table-empty">
-      <div class="ico">🔌</div>
-      <h3>Connection failed</h3>
-      <p>${err.message || "Could not reach the backend. Check your Apps Script URL and deployment."}</p>
-    </div>
-  `;
+  area.innerHTML = `<div class="table-empty"><div class="ico">🔌</div><h3>Connection failed</h3><p>${err.message || "Could not reach the backend. Check your Apps Script URL and deployment."}</p></div>`;
 }
 
 // ═══ TABLE RENDERING ═══
