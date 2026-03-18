@@ -15,13 +15,37 @@ const PAIN_OPTS=["All","5 — Severe","4 — High","3 — Moderate","1–2 — L
 
 let S={page:'landing',detailId:null,search:'',industry:'All',pain:'All',userType:'All',sort:'trending',votes:{},pf:{title:'',who:'',frequency:'',pain:3,workaround:'',willPay:'',industry:''},postDone:false,pt:{title:'',desc:'',target:'',problem:'',assumptions:'',feedbackTypes:[],rewardType:'',rewardAmount:'',rewardMsg:''},ptDone:false,discVotes:{},discBest:null,co:{name:'',email:'',card:'',exp:'',cvc:''},coStep:'form'};
 
-function go(p,id){
+function go(p, id) {
   if (typeof gtag === "function") {
+    gtag('event', 'page_view', {
+      page_title: p,
+      page_location: window.location.href + '#' + p
+    });
+
     if (p === 'board') gtag('event', 'click_explore_problems');
     if (p === 'post') gtag('event', 'click_share_problem');
     if (p === 'pressuretest') gtag('event', 'click_pressure_test');
-    if (p === 'checkout') gtag('event', 'click_early_access');}
-  S.page=p;if(id)S.detailId=id;document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));document.getElementById('page-'+p).classList.add('active');document.querySelectorAll('.nav-link').forEach(l=>l.classList.toggle('active',l.dataset.nav===p));window.scrollTo({top:0,behavior:'smooth'});if(p==='board')renderBoard();if(p==='detail')renderDetail();if(p==='post')renderPost();if(p==='pressuretest')renderPT();if(p==='checkout'){S.coStep='form';renderCO();}if(p==='landing')initReveal();}
+    if (p === 'checkout') gtag('event', 'click_early_access');
+  }
+
+  S.page = p;
+  if (id) S.detailId = id;
+
+  document.querySelectorAll('.page').forEach(x => x.classList.remove('active'));
+  document.getElementById('page-' + p).classList.add('active');
+  document.querySelectorAll('.nav-link').forEach(l => l.classList.toggle('active', l.dataset.nav === p));
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  if (p === 'board') renderBoard();
+  if (p === 'detail') renderDetail();
+  if (p === 'post') renderPost();
+  if (p === 'pressuretest') renderPT();
+  if (p === 'checkout') {
+    S.coStep = 'form';
+    renderCO();
+  }
+  if (p === 'landing') initReveal();
+}
 
 function pc(l){return l>=5?'pain-5':l>=4?'pain-4':l>=3?'pain-3':'pain-low'}
 function pl(l){return l>=5?'Severe':l>=4?'High':l>=3?'Moderate':'Low'}
@@ -250,9 +274,14 @@ async function submitProblemPost() {
   console.log("Problem submit result:", result);
 
   if (result && result.success) {
-    S.postDone = true;
-    renderPost();
-  } else {
+
+  if (typeof gtag === "function") {
+    gtag('event', 'submit_problem');
+  }
+
+  S.postDone = true;
+  renderPost();
+} else {
     alert("Problem submission failed. Please try again.");
   }
 }
@@ -264,9 +293,14 @@ async function submitIdeaPost() {
   console.log("Idea submit result:", result);
 
   if (result && result.success) {
-    S.ptDone = true;
-    renderPT();
-  } else {
+
+  if (typeof gtag === "function") {
+    gtag('event', 'submit_idea');
+  }
+
+  S.ptDone = true;
+  renderPT();
+} else {
     alert("Idea submission failed. Please try again.");
   }
 }
@@ -278,6 +312,14 @@ async function submitCheckoutForm() {
   console.log("Signup submit result:", result);
 
   if (result && result.success) {
+
+    if (typeof gtag === "function") {
+      gtag('event', 'submit_signup', {
+        value: 5,
+        currency: 'USD'
+      });
+    }
+
     S.coStep = "processing";
     renderCO();
     setTimeout(() => {
