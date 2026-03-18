@@ -15,7 +15,13 @@ const PAIN_OPTS=["All","5 — Severe","4 — High","3 — Moderate","1–2 — L
 
 let S={page:'landing',detailId:null,search:'',industry:'All',pain:'All',userType:'All',sort:'trending',votes:{},pf:{title:'',who:'',frequency:'',pain:3,workaround:'',willPay:'',industry:''},postDone:false,pt:{title:'',desc:'',target:'',problem:'',assumptions:'',feedbackTypes:[],rewardType:'',rewardAmount:'',rewardMsg:''},ptDone:false,discVotes:{},discBest:null,co:{name:'',email:'',card:'',exp:'',cvc:''},coStep:'form'};
 
-function go(p,id){S.page=p;if(id)S.detailId=id;document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));document.getElementById('page-'+p).classList.add('active');document.querySelectorAll('.nav-link').forEach(l=>l.classList.toggle('active',l.dataset.nav===p));window.scrollTo({top:0,behavior:'smooth'});if(p==='board')renderBoard();if(p==='detail')renderDetail();if(p==='post')renderPost();if(p==='pressuretest')renderPT();if(p==='checkout'){S.coStep='form';renderCO();}if(p==='landing')initReveal();}
+function go(p,id){
+  if (typeof gtag === "function") {
+    if (p === 'board') gtag('event', 'click_explore_problems');
+    if (p === 'post') gtag('event', 'click_share_problem');
+    if (p === 'pressuretest') gtag('event', 'click_pressure_test');
+    if (p === 'checkout') gtag('event', 'click_early_access');}
+  S.page=p;if(id)S.detailId=id;document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));document.getElementById('page-'+p).classList.add('active');document.querySelectorAll('.nav-link').forEach(l=>l.classList.toggle('active',l.dataset.nav===p));window.scrollTo({top:0,behavior:'smooth'});if(p==='board')renderBoard();if(p==='detail')renderDetail();if(p==='post')renderPost();if(p==='pressuretest')renderPT();if(p==='checkout'){S.coStep='form';renderCO();}if(p==='landing')initReveal();}
 
 function pc(l){return l>=5?'pain-5':l>=4?'pain-4':l>=3?'pain-3':'pain-low'}
 function pl(l){return l>=5?'Severe':l>=4?'High':l>=3?'Moderate':'Low'}
