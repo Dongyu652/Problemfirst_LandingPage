@@ -6,7 +6,7 @@ console.log("db.js loaded");
 // All data is only visible to the spreadsheet owner (you).
 
 // ── PASTE YOUR GOOGLE APPS SCRIPT WEB APP URL HERE ──
-const SHEET_API_URL = "https://script.google.com/macros/s/AKfycby2DYW-wvHa5HC9Uh_gZjzl1cLyjirjbn9WSJ55VprEoqYCvXzqbrWipeYtBw7mGK_1eA/exec";
+const SHEET_API_URL = "https://script.google.com/macros/s/AKfycbyrRpoZH-NsIaec6gB6J6IHFezOYkOOz37CkxMxPg-HolkPR9BqTsTzvkJFbIwk8GWSKA/exec";
 
 // ── Core submit function ──
 async function submitToSheet(type, payload) {
